@@ -99,17 +99,13 @@ def build_flight(data_file):
                 start,
                 end,
                 cost,
+                the_flight,
             )
         )
 
-    # Add a placeholder for the end position.
-    jetstreams.append(distance, distance, 0)
-
-    return Flight(
-        jetstreams,
-        distance,
-        base_cost,
-    )
+    the_flight.distance = distance
+    the_flight.jetstreams = jetstreams
+    return the_flight
 
 
 if __name__ == '__main__':
