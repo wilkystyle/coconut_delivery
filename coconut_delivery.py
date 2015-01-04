@@ -1,5 +1,17 @@
 import sys
 
+DATA_FILE = "sample_paths.txt"
+
+
+def build_flight(data_file):
+    """
+    Build and return a flight object from a given input file.
+    """
+    # TODO
+    raise NotImplementedError(
+        "You have not yet implemented the build_flight method!"
+    )
+
 
 class Flight:
     """
@@ -23,3 +35,11 @@ class Jetstream:
     start = 0
     end = 0
     cost = 0
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        DATA_FILE = sys.argv[1]
+
+    with open(DATA_FILE) as f:
+        build_flight(f)
