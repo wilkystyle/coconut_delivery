@@ -10,14 +10,9 @@ class Flight:
     Contains information about the jetstreams available along the delivery
     route, as well as the base cost for flying when not in a jetstream.
     """
-    jetstreams = []
+    jetstreams = None
     distance = 0
     base_cost = 0
-
-    def __init__(self, jetstreams, distance, base_cost):
-        self.jetstreams = jetstreams
-        self.distance = distance
-        self.base_cost = base_cost
 
 
 class Jetstream:
