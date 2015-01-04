@@ -115,3 +115,27 @@ if __name__ == '__main__':
     flight = None
     with open(DATA_FILE) as f:
         flight = build_flight(f)
+
+    # The dummy jetstream marking the beginning of the flight is always the
+    # first entry in the list.
+    the_route = flight.jetstreams[0]
+    unmarked = list(flight.jetstreams)
+    marked = []
+
+    while unmarked:
+        js = unmarked.pop()
+        js.ensure_base_score()
+
+        for other_stream in unmarked:
+            if other_stream.end > js.start:
+                # Can't get to this stream from the other one. Skip it.
+                continue
+
+            # Potentially update the score of the other stream.
+            other_stream.update_score_maybe(js)
+
+        # Add the stream to the marked list, now that we're done with it.
+        marked.append(js)
+
+    print "Minimum total energy: {}".format(the_route.score)
+    print [x for x in the_route.enumerate_path()]
